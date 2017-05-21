@@ -3,7 +3,6 @@ import lxml
 from bs4 import BeautifulSoup
 from openpyxl import Workbook
 from lxml import html
-import json
 
 
 def get_courses_list(link):
