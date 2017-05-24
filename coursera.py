@@ -24,7 +24,7 @@ def get_course_info(course_slug, quantity_courses):
         count_week_course = soup.find_all('div', class_='week')
         rating_course = soup.find(
                 'div', class_='ratings-text bt3-visible-xs')
-        if not rating_course == None:
+        if not rating_course is None:
             rating_course = rating_course.text
         else:
             rating_course = 'Рейтинг не указан'
