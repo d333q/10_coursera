@@ -17,27 +17,16 @@ def get_course_info(course_slug, quantity_courses):
     for link in course_slug[:quantity_courses]:
         page = requests.get(link).text
         soup = BeautifulSoup(page, 'html.parser')
-        try:
-            name_course = soup.find('h1', class_='title display-3-text').text
-        except:
-            some_info = 'Имя не указано'
-        try:
-            start_date_course = soup.find(
+        name_course = soup.find('h1', class_='title display-3-text').text
+        start_date_course = soup.find(
                 'div', class_='startdate rc-StartDateString caption-text').text
-        except:
-            start_date_course = 'Нет доступных предстоящих сессий'
-        try:
-            lang_course = soup.find('div', class_='rc-Language').text
-        except:
-            lang_course = 'Язык не указан'
-        try:
-            count_week_course = soup.find_all('div', class_='week')
-        except:
-            count_week_course = 'Количество недель не указано'
-        try:
-            rating_course = soup.find(
-                'div', class_='ratings-text bt3-visible-xs').text
-        except:
+        lang_course = soup.find('div', class_='rc-Language').text
+        count_week_course = soup.find_all('div', class_='week')
+        rating_course = soup.find(
+                'div', class_='ratings-text bt3-visible-xs')
+        if not rating_course == None:
+            rating_course = rating_course.text
+        else:
             rating_course = 'Рейтинг не указан'
         list_info_courses.append(
                             [name_course,
